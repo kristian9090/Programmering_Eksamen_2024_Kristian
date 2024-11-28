@@ -38,14 +38,15 @@
             <h2>Oppgaver</h2>
             <ul id="todolist">
                 <!-- De to listeelementene skal byttes ut med utskrift av data fra programkoden i <script> -->
-                <li>
+                    <!-- Kommenterte ut li listen under slik at  -->
+                <!-- <li>
                     <span class="tast-text">Les eksamensteksten</span>
                     <span class="task-status task-status-done">Done</span>
                 </li>
                 <li>
                     <span class="tast-text">Løs oppgavene i InnfProg-eksamen</span>
                     <span class="task-status task-status-todo">To do</span>
-                </li>
+                </li> -->
             </ul>
         </section>
         <footer><p>Adminpanel IPv1.0</p></footer>
@@ -66,12 +67,12 @@
         contacts.map((contact, index) => {
             contactlist += `<article>
                 <p><strong>${contact.lastname}, ${contact.firstname}</strong><br />
-                    Kontor: ${contact.office} | E-post: ${contact.mail}</p>
+                    Kontor: ${contact.office} | E-post: <a href="mailto:${contact.mail}">${contact.mail}</a></p>
             </article>`
         })
 
         document.getElementById("contactlist").innerHTML = contactlist
-        
+
         //BOOKS
         const books = [
             {text: "Printerblekk", date: "02.11.24", amount: -750},
@@ -95,7 +96,20 @@
             {text: "Lag funksjonalitet for å sette en eksisterende oppgave til utført ved å endre status", status: "To do"}
         ]
 
+        //lager en tom variabel for utskrift
+        let todolist = ""
+
+        //lager .map funksjon og template literals for å hente ut data fra todos 
+        todos.map((todos, index) => {
+              todolist += `<li>
+                    <span class="tast-text">${todos.text}</span>
+                    <span class="task-status task-status-done">${todos.status}</span>
+                </li>`
+        })
         
+        document.getElementById("todolist").innerHTML = todolist
+        
+
         //CLOCK
         
     </script>
