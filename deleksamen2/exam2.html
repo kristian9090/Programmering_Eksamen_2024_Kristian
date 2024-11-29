@@ -32,13 +32,17 @@
         </section>
         <section id="todoform">
             <h2>Ny oppgave</h2>
-            <p><label for="task">Oppgavetekst:</label><br /><input type="text" id="task" /><button id="savetask">Lagre</button></p>
+            <p>
+                <label for="task">Oppgavetekst:</label><br/>
+                    <input type="text" id="task"/>
+                <button id="savetask" onclick="test()">Lagre</button>
+            </p>
         </section>
         <section id="todos">
             <h2>Oppgaver</h2>
             <ul id="todolist">
                 <!-- De to listeelementene skal byttes ut med utskrift av data fra programkoden i <script> -->
-                    <!-- Kommenterte ut li listen under slik at  -->
+                    <!-- Kommenterte ut li listen under for å fjerne den fra koden -->
                 <!-- <li>
                     <span class="tast-text">Les eksamensteksten</span>
                     <span class="task-status task-status-done">Done</span>
@@ -88,7 +92,7 @@
         let balance = 0;    //Startbalanse for utregning av utgifter og inntekter i november
 
 
-        //TODOS
+        //TODOS Minstekrav starter her
         const todos = [
             {text: "Les eksamensteksten", status: "Done"},
             {text: "Løs Innføring i programmerings-eksamen", status: "To do"},
@@ -101,15 +105,31 @@
 
         //lager .map funksjon og template literals for å hente ut data fra todos 
         todos.map((todos, index) => {
-              todolist += `<li>
+              todolist += `<li> 
                     <span class="tast-text">${todos.text}</span>
-                    <span class="task-status task-status-done">${todos.status}</span>
+                    <span class="task-status ${todos.status === "Done" ? "task-status-done": "task-status-todo" }">${todos.status}</span>
                 </li>`
         })
         
         document.getElementById("todolist").innerHTML = todolist
         
+        //Savetask Oppgave 2 starter her
+        function test() {
+            const inputValue = document.getElementById("task").value
 
+            console.log(inputValue)
+            
+            todos.text = inputValue
+            todolist += `<li>
+                    <span class="tast-text">${inputValue}</span>
+                    <span class="task-status task-status-todo">To do</span>
+                </li>`
+                document.getElementById("todolist").innerHTML = todolist
+        }
+
+        //Henter #task input
+
+        
         //CLOCK
         
     </script>
