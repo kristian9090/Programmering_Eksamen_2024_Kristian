@@ -12,7 +12,7 @@
             <h2>Kontakter</h2>
             <div id="contactlist"></div>
         </section>
-        <aside id="clock">13:37</aside>
+        <aside> <span id="clock">0</span></aside>
         <section id="books">
             <h2>Regnskap</h2>
             <p>Innkommende egenkapital: Kr. <span id="incomingequity"></span></p>
@@ -35,7 +35,7 @@
             <p>
                 <label for="task">Oppgavetekst:</label><br/>
                     <input type="text" id="task"/>
-                <button id="savetask" onclick="test()">Lagre</button>
+                <button id="savetask" onclick="taskClick()">Lagre</button>
             </p>
         </section>
         <section id="todos">
@@ -103,7 +103,7 @@
         //lager en tom variabel for utskrift
         let todolist = ""
 
-        //lager .map funksjon og template literals for å hente ut data fra todos 
+        //lager .map funksjon og template literals for å hente ut data fra todos. Oppgave 2, på linje 110 lager jeg en if test for å sjekke status som bestemmer class som gir rød eller grønn farge
         todos.map((todos, index) => {
               todolist += `<li> 
                     <span class="tast-text">${todos.text}</span>
@@ -113,12 +113,12 @@
         
         document.getElementById("todolist").innerHTML = todolist
         
-        //Savetask Oppgave 2 starter her
-        function test() {
+        //Oppgave 2 lager funksjon som tar imot input og skriver det ut i todolist
+        function taskClick() {
             const inputValue = document.getElementById("task").value
 
             console.log(inputValue)
-            
+            //template literals for å skrive ut verdien i todolist som bruker legger inn i inputvalue
             todos.text = inputValue
             todolist += `<li>
                     <span class="tast-text">${inputValue}</span>
@@ -127,11 +127,26 @@
                 document.getElementById("todolist").innerHTML = todolist
         }
 
-        //Henter #task input
-
-        
         //CLOCK
-        
+
+         // https://www.w3schools.com/js/tryit.asp?filename=tryjs_date_new
+         // Kilde til hvor jeg hentet koden til klokken fra
+    
+        function clockUpdate () {
+            const clock = new Date()
+            //definerer varialber for å hente forskjellige tider    
+            let sec = clock.getSeconds()
+            let min = clock.getMinutes()
+            let hour = clock.getHours()
+          
+            document.getElementById("clock").innerHTML = hour + ":" + min + ":" + sec
+        }
+
+
+        clockUpdate()
+        //setter interval for at klokken teller 1 sekund, hvis ikke hadde den kun oppdatert hver gang den kjøres altså hver gang siden refreshes
+        setInterval(clockUpdate, 1000)
+
     </script>
 </body>
 </html>
