@@ -44,7 +44,6 @@
         
         //Minstekrav, Oppgave 1, når #addcolor trykkes skal det genereres en ny farge 
             
-    //    document.getElementById("addColor").addEventListener("click", generateColor)
     function generateColor() {
      // Lager array for hexa farge som består av tall og bokstaver
      const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"]
@@ -53,12 +52,20 @@
      for (let maxNum = 0; maxNum < 6; maxNum++) {
          hex += numbers[Math.floor(Math.random() * numbers.length)]
      }
-        //Minstekrav, Oppgave 3 logger i konsollen 
+        //Minstekrav, Oppgave 3 logger i konsollent
      console.log(hex)
-     
+     return hex
        }
 
-       document.getElementById("addColor").addEventListener("click", generateColor)
+      
+
+    function displayColor() {
+        const color = generateColor()
+        ctx.fillStyle = color
+        ctx.fillRect(0, 0, 100, canvas.height)
+    }
+
+    document.getElementById("addColor").addEventListener("click", displayColor)
 
 
         //requestAnimationFrame
