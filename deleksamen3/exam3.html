@@ -59,13 +59,13 @@
 
       
 
-    function displayColor() {
-        const color = generateColor()
-        ctx.fillStyle = color
-        ctx.fillRect(0, 0, 100, canvas.height)
-    }
+    // function displayColor() {
+    //     const color = generateColor()
+    //     ctx.fillStyle = color
+    //     ctx.fillRect(0, 0, 100, canvas.height)
+    // }
 
-    document.getElementById("addColor").addEventListener("click", displayColor)
+    document.getElementById("addColor").addEventListener("click", generateColor)
 
 
         //requestAnimationFrame
