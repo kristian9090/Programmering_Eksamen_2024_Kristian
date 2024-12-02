@@ -35,13 +35,13 @@
             <p>
                 <label for="task">Oppgavetekst:</label><br/>
                     <input type="text" id="task"/>
-                <button id="savetask" onclick="taskClick()">Lagre</button>
+                <button id="savetask" onclick="taskClick()" disabled>Lagre</button>
             </p>
         </section>
         <section id="todos">
             <h2>Oppgaver</h2>
             <ul id="todolist">
-                <!-- De to listeelementene skal byttes ut med utskrift av data fra programkoden i <script> -->
+                <!-- De to listeelementene skal byttes ut med utsk  rift av data fra programkoden i <script> -->
                     <!-- Kommenterte ut li listen under for å fjerne den fra koden -->
                 <!-- <li>
                     <span class="tast-text">Les eksamensteksten</span>
@@ -99,6 +99,23 @@
         document.getElementById("incomingequity").innerHTML = equity
         let balance = 0;    //Startbalanse for utregning av utgifter og inntekter i november
 
+        // Karakter C, oppgave 2, tom variabel for utskrift av bokføring
+        let booksPrint = ""
+        
+        // Karakter C, oppgave 2, bruker .map funksjon for å hente ut data fra books, slik som jeg gjorde med todos
+        books.map((book) => {
+            // Template literals for å hente data fra books til utskriften
+            booksPrint += `
+                <div id="bookhead" class="bookline">
+                    <span class="booktext">${book.text}</span>
+                    <span class="bookdate">${book.date}</span>
+                    <span class="bookamount">${book.amount}</span>
+                </div>`
+        })
+
+        // Karakter C, oppgave 2, printer ut bokføringen
+        document.getElementById("booklines").innerHTML = booksPrint
+
 
         //TODOS Minstekrav starter her
         const todos = [
@@ -121,19 +138,31 @@
         
         document.getElementById("todolist").innerHTML = todolist
         
-        //Oppgave 2 lager funksjon som tar imot input og skriver det ut i todolist
+        //Karakter D, oppgave 1 lager funksjon som tar imot input og skriver det ut i todolist
         function taskClick() {
             const inputValue = document.getElementById("task").value
-        
+            
             console.log(inputValue)
             //template literals for å skrive ut verdien i todolist som bruker legger inn i inputvalue
             todos.text = inputValue
-            todolist += `<li>
+            todolist += `
+                <li>
                     <span class="tast-text">${inputValue}</span>
                     <span class="task-status task-status-todo">To do</span>
                 </li>`
                 document.getElementById("todolist").innerHTML = todolist
         }
+
+        // Karakter C, oppgave 3, 
+       
+            // //hvis inputvalue er større enn 0, altså at det er noe i inputfeltet, så skal knappen være enabled
+            // if (inputValue.length > 0) {
+            //     document.getElementById("savetask").disabled = false
+            // } else {
+            //     document.getElementById("savetask").disabled = true
+            // }
+        
+       
 
         //CLOCK
 
