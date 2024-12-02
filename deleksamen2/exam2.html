@@ -67,7 +67,11 @@
         ]
 
         // Karakter C, oppgave 1, sorterer kontakter etter etternavn
-        contacts.sort((a, b) => a.lastname.localeCompare(b.lastname))
+        function sortName(a, b) {
+            return a.lastname.localeCompare(b.lastname)
+        }
+        //kaller på sortName funksjonen for å sortere etternavn
+        contacts.sort(sortName)
 
         let contactlist = ""
 
