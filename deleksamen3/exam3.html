@@ -47,7 +47,7 @@
 
         // Minstekrav, Oppgave 1, lager en funksjon som genererer en farge
         function generateColor() {
-            // If test der colorArray kan kun lagre maks 10 farger
+            // If test der colorArray kan kun lagre maks 10 farger, return hvis arrayen er full
             if (colorArray.length >= 10) {
             return
             }   
@@ -58,7 +58,7 @@
             for (let maxNum = 0; maxNum < 6; maxNum++) {
             hex += numbers[Math.floor(Math.random() * numbers.length)]
             }
-            // Minstekrav, Oppgave 3 logger i konsollen
+            //returnerer fargen 
             return hex
         }
 
@@ -66,23 +66,16 @@
         function addColorArray() {
             const newColor = generateColor()
             if (newColor) {
+            //legger til fargen i arrayen med .push
             colorArray.push(newColor)
+            // Minstekrav, Oppgave 3 logger i konsollen
             console.log(colorArray)
             }
         }
 
         // Minstekrav, Oppgave 1, når #addcolor trykkes skal det genereres en ny farge     
         document.getElementById("addColor").addEventListener("click", addColorArray)
-
-
-
-    // function displayColor() {
-    //     const color = generateColor()
-    //     ctx.fillStyle = color
-    //     ctx.fillRect(0, 0, 100, canvas.height)
-    // }
-
-    // document.getElementById("addColor").addEventListener("click", generateColor)
+    
 
 
         //requestAnimationFrame

@@ -66,6 +66,9 @@
             {lastname: "Jansson", firstname: "Sigried", office: "B1", mail: "s.jansson@company.com"}
         ]
 
+        // Karakter C, oppgave 1, sorterer kontakter etter etternavn
+        contacts.sort((a, b) => a.lastname.localeCompare(b.lastname))
+
         let contactlist = ""
 
         contacts.map((contact, index) => {
@@ -116,7 +119,7 @@
         //Oppgave 2 lager funksjon som tar imot input og skriver det ut i todolist
         function taskClick() {
             const inputValue = document.getElementById("task").value
-
+        
             console.log(inputValue)
             //template literals for å skrive ut verdien i todolist som bruker legger inn i inputvalue
             todos.text = inputValue
