@@ -12,7 +12,7 @@
         <canvas id="colorspace"></canvas>
         <nav>
             <button id="addColor">Legg til en farge</button>
-            <button id="emptyArray">Tilbakestill fargene</button>
+            <button id="emptyArray" onclick="clearArray()">Tilbakestill fargene</button>
             <button id="generateAll">Generer 10 nye farger</button>
         </nav>
         <h2>Endre farger:</h2>
@@ -73,20 +73,38 @@
             }
         }
 
-        // Minstekrav, Oppgave 1, når #addcolor trykkes skal det genereres en ny farge     
         document.getElementById("addColor").addEventListener("click", addColorArray)
-    
+        
+        // // Finner id til knapp for å tømme canvas
+       
 
-
+        // document.getElementById("emptyArray").addEventListener("click", clearArray)
         //requestAnimationFrame
         const requestAnimationFrame = window.requestAnimationFrame || window.msRequestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame
-        function renderCanvas() {
+        function renderCanvas() {  
+             
+            colorArray.forEach((color, index) => {
+                ctx.fillStyle = color
+                ctx.fillRect(index * 100, 0, 100, 100)
+            })
             
             requestAnimationFrame(renderCanvas)
+            
+        }
+        
+        //Karakter D, oppgave 2, Lager funksjon for å tømme canvaset
+        function clearArray() {
+            //clearRect gjør at canvaset tømmes
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+            //tilbakestiller arrayen til tom
+            colorArray = []
         }
 
         //Initial running of drawing canvas
         renderCanvas()
+
+
+        
     </script>
 </body>
 </html>
