@@ -35,7 +35,7 @@
             <p>
                 <label for="task">Oppgavetekst:</label><br/>
                     <input type="text" id="task"/>
-                <button id="savetask" onclick="taskClick()" disabled>Lagre</button>
+                <button id="savetask" onclick="taskClick()">Lagre</button>
             </p>
         </section>
         <section id="todos">
@@ -142,6 +142,12 @@
         function taskClick() {
             const inputValue = document.getElementById("task").value
             
+            // Karakter C, oppgave 3, hvis inputvalue er tom blir funksjonen avsluttet med return, i tillegg kommer en alert når feltet er tomt
+            if (inputValue === "") {
+                alert("Oppgavetekst feltet må fylles ut")
+                return
+            } 
+            
             console.log(inputValue)
             //template literals for å skrive ut verdien i todolist som bruker legger inn i inputvalue
             todos.text = inputValue
@@ -152,16 +158,6 @@
                 </li>`
                 document.getElementById("todolist").innerHTML = todolist
         }
-
-        // Karakter C, oppgave 3, 
-       
-            // //hvis inputvalue er større enn 0, altså at det er noe i inputfeltet, så skal knappen være enabled
-            // if (inputValue.length > 0) {
-            //     document.getElementById("savetask").disabled = false
-            // } else {
-            //     document.getElementById("savetask").disabled = true
-            // }
-        
        
 
         //CLOCK
