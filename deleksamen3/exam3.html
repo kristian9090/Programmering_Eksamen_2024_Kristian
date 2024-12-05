@@ -120,6 +120,20 @@
         renderCanvas()
 
 
+        // Karakter C, oppgave 1, funksjon for å fylle alle 10 rutene med farger
+        function maxColors() {
+            // Tømmer arrayen slik at alle 10 fargene blir nye
+            colorArray = []
+            // Lager en for loop som går gjennom addColorArray() 10 ganger og legger de til i arrayen
+                for (let c = 0; c < 10; c++) {
+                    addColorArray()
+                }
+            }
+
+        
+        // Når knappen trykkes kjøres macColors()
+        document.getElementById("generateAll").addEventListener("click", maxColors)
+
     </script>
 </body>
 </html>
