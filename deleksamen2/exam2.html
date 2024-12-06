@@ -74,12 +74,16 @@
         //kaller på sortName funksjonen for å sortere etternavn
         contacts.sort(sortName)
 
+
+        // Minstekrav oppgave 2, lager en tom variabel for utskrift av kontakter
         let contactlist = ""
 
+          // Minstekrav oppgave 2, legger på mailto slik at mailen kan trykkes
         contacts.map((contact, index) => {
             contactlist += `<article>
                 <p><strong>${contact.lastname}, ${contact.firstname}</strong><br />
-                    Kontor: ${contact.office} | E-post: <a href="mailto:${contact.mail}">${contact.mail}</a></p>
+                        Kontor: ${contact.office} | E-post: <a href="mailto:${contact.mail}">${contact.mail}</a></p>
+                    </article>
             </article>`
         })
 
