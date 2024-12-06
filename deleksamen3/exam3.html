@@ -88,24 +88,18 @@
                 ctx.fillStyle = color
                 // Bestemmer størrelse på firkantene
                 ctx.fillRect(index * 100, 0, 100, 100)
+                ctx.beginPath()
+                ctx.rect(index * 100, 0, 60, 25)
+                ctx.fillStyle = "#000"
+                ctx.fill()
+                ctx.closePath()
 
-            // Display the hex color code
-            // ctx.fillStyle = "#000";
-            // ctx.fillRect(0, 0, 50, 25);
-            ctx.beginPath()
-            ctx.rect(0, 0, 60, 25)
-            ctx.fillStyle = "#000"
-            ctx.fill()
-            ctx.closePath()
-
-            ctx.beginPath()
-            ctx.fillStyle = "#fff"
-            ctx.font = "12px Arial"
-            ctx.fillText(color, index * 100 + 3, 19)
-            ctx.closePath()
+                ctx.beginPath()
+                ctx.fillStyle = "#fff"
+                ctx.font = "12px Arial"
+                ctx.fillText(color, index * 100 + 3, 19)
+                ctx.closePath()
            
-
-
             })
             
             requestAnimationFrame(renderCanvas)
