@@ -58,7 +58,7 @@
             for (let maxNum = 0; maxNum < 6; maxNum++) {
             hex += numbers[Math.floor(Math.random() * numbers.length)]
             }
-            // Returnerer fargen 
+            // Returnerer fargen til arrayet
             return hex
         }
 
@@ -71,6 +71,10 @@
             // Minstekrav, Oppgave 3 logger i konsollen
             console.log(colorArray)
             }
+            // Karakter C oppgave 2, deaktiverer addColor-knappen hvis 10 farger er lagret
+            if (colorArray.length >= 10) {
+                    document.getElementById("addColor").disabled = true;
+                }
         }
 
         document.getElementById("addColor").addEventListener("click", addColorArray)
@@ -114,6 +118,9 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height)
             // Karakter D, oppgave 2/3, tilbakestiller arrayen til tom
             colorArray = []
+            // Karakter C oppgave 2, aktiverer addColor-knappen når canvaset tømmes
+            document.getElementById("addColor").disabled = false;
+
         }
 
         //Initial running of drawing canvas
@@ -125,15 +132,31 @@
             // Tømmer arrayen slik at alle 10 fargene blir nye
             colorArray = []
             // Lager en for loop som går gjennom addColorArray() 10 ganger og legger de til i arrayen
-                for (let c = 0; c < 10; c++) {
-                    addColorArray()
-                }
+                    for (let c = 0; c < 10; c++) {
+                        addColorArray()
+                    }
+                     // Når arrayen har 10 farger blir knappen deaktivert
+                    if (colorArray.length >= 10) {
+                        document.getElementById("addColor").disabled = true;
+                    }
             }
+            
+            // Når knappen trykkes kjøres macColors()
+            document.getElementById("generateAll").addEventListener("click", maxColors)
 
-        
-        // Når knappen trykkes kjøres macColors()
-        document.getElementById("generateAll").addEventListener("click", maxColors)
+
+            // Karakter C, oppgave 2, funksjon for å endre farge i en rute
+            function disableButton() {
+                    // Når tilbakestill knappen trykkes blir knappen for å lage 10 nye farger igjen aktivert
+                    document.getElementById("emptyArray").addEventListener("click", () => {
+                    document.getElementById("addColor").disabled = false
+                })  
+                 // Karakter C oppgave 2, når arrayen har 10 farger blir knappen deaktivert
+                 if (colorArray.length >= 10) {
+                       document.getElementById("addColor").disabled = true
+                    }
+            }
 
     </script>
 </body>
-</html>
+</html>      
