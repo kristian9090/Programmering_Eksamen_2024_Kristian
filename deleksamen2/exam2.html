@@ -99,9 +99,11 @@
             {text: "Nettbutikksalg, uke 45", date: "13.11.24", amount: 2988}
         ]
 
-        let equity = 23782; //Penger på konto ved inngangen til november
-        document.getElementById("incomingequity").innerHTML = equity
-        let balance = 0;    //Startbalanse for utregning av utgifter og inntekter i november
+        //Penger på konto i november
+        let totalMoney = 23782
+        document.getElementById("incomingequity").innerHTML = totalMoney
+        // Lager en variabel for total verdi som senere oppdateres
+        let balance = 0
 
         // Karakter C, oppgave 2, tom variabel for utskrift av bokføring
         let booksPrint = ""
@@ -117,9 +119,24 @@
                 </div>`
         })
 
-        // Karakter C, oppgave 2, printer ut bokføringen
-        document.getElementById("booklines").innerHTML = booksPrint
+          // Karakter C, oppgave 2, printer ut bokføringen
+          document.getElementById("booklines").innerHTML = booksPrint
 
+
+        // Karakter B, oppgave 2, Regner ut balansen i November
+        // Bruker igjen .map funksjon for å hente ut summer fra books og legger de sammen
+        totalMoney - books.map((book) => {
+            // Oppdaterer balance variabelen med summene
+            balance += book.amount
+        })
+        // Karakter B oppgave 4, skriver ut balansen til riktig id
+        document.getElementById("balance").innerHTML = balance
+
+        // Karakter B, oppgave 3, regner ut egenkapital, ved hjelp av variablene lagt tildligere
+        equity = totalMoney + balance
+        // Utskrift av egenkapital
+        document.getElementById("equity").innerHTML = equity
+        
 
         //TODOS Minstekrav starter her
         const todos = [
@@ -143,6 +160,7 @@
         document.getElementById("todolist").innerHTML = todolist
         
         //Karakter D, oppgave 1 lager funksjon som tar imot input og skriver det ut i todolist
+        // Karakter B, oppgave 1, når  knappen blir trykket på blir funksjonen taskClick kjørt, og listen med oppgaver blir oppdatert
         function taskClick() {
             const inputValue = document.getElementById("task").value
             
