@@ -86,7 +86,7 @@
             colorArray.forEach((color, index) => {
                 // Canvas blir fylt med farger fra colorArray
                 ctx.fillStyle = color
-                // Bestemmer størrelse på firkantene
+                // Lagher svart boks øverst 
                 ctx.fillRect(index * 100, 0, 100, 100)
                 ctx.beginPath()
                 ctx.rect(index * 100, 0, 60, 25)
@@ -94,6 +94,7 @@
                 ctx.fill()
                 ctx.closePath()
 
+                //Lager hvit tekst i boksen
                 ctx.beginPath()
                 ctx.fillStyle = "#fff"
                 ctx.font = "12px Arial"
