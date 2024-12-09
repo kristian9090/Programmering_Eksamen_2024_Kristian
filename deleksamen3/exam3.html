@@ -86,20 +86,34 @@
             colorArray.forEach((color, index) => {
                 // Canvas blir fylt med farger fra colorArray
                 ctx.fillStyle = color
-                // Lagher svart boks øverst 
-                ctx.fillRect(index * 100, 0, 100, 100)
+                // Lager hvit boks øverst 
                 ctx.beginPath()
+                ctx.fillRect(index * 100, 0, 100, 100)
                 ctx.rect(index * 100, 0, 60, 25)
-                ctx.fillStyle = "#000"
+                ctx.fillStyle = "#fff"
                 ctx.fill()
                 ctx.closePath()
 
-                //Lager hvit tekst i boksen
+                //Lager svart tekst i boksen
                 ctx.beginPath()
-                ctx.fillStyle = "#fff"
+                ctx.fillStyle = "#000"
                 ctx.font = "12px Arial"
                 ctx.fillText(color, index * 100 + 3, 19)
                 ctx.closePath()
+
+                // Lager ny hvit boks nederst til høyre
+                ctx.beginPath()
+                ctx.fillStyle = "#fff"
+                ctx.fillRect(index * 100 + 75, 75, 25, 25)
+                ctx.closePath()
+
+                // Lager gjennomsiktig tekst i boksen
+                ctx.beginPath()
+                ctx.fillStyle = "rgba(0, 0, 0, 0.5)"
+                ctx.font = "12px Arial"
+                ctx.fillText(index + 1, index * 100 + 78, 93)
+                ctx.closePath()
+
            
             })
             
@@ -151,6 +165,25 @@
                        document.getElementById("addColor").disabled = true
                     }
             }
+
+
+            // Karakter B, oppgave 1, ta i mot fra endre farge seksjonen
+            document.getElementById("saveNewColor").addEventListener("click", () => {
+                // Henter indexen fra select elementet
+                const index = document.getElementById("colorSquareIndex").value
+                // Henter fargen fra input elementet
+                const newColor = document.getElementById("newColor").value
+                // Endrer fargen i arrayen
+                colorArray[index] = newColor
+                // Logger arrayen i konsollen
+                console.log(colorArray)
+                // Tømmer canvaset
+                ctx.clearRect(0, 0, canvas.width, canvas.height)
+                // Kjører renderCanvas funksjonen på nytt
+                renderCanvas()
+                // Kjører disableButton funksjonen
+                disableButton()
+            })
 
     </script>
 </body>
