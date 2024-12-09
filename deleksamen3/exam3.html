@@ -52,7 +52,7 @@
             return
             }   
             // Lager array for hexa farge som består av tall og bokstaver
-            const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"]
+            const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"]
             let hex = "#"
             // En for loop som går gjennom numbers arrayen, henter tilfeldige tall og bokstaver til slutt genereres en farge kode på maks 6 tegn
             for (let maxNum = 0; maxNum < 6; maxNum++) {
@@ -154,7 +154,7 @@
             document.getElementById("generateAll").addEventListener("click", maxColors)
 
 
-            // Karakter C, oppgave 2, funksjon for å endre farge i en rute
+            // Karakter C, oppgave 2, 
             function disableButton() {
                     // Når tilbakestill knappen trykkes blir knappen for å lage 10 nye farger igjen aktivert
                     document.getElementById("emptyArray").addEventListener("click", () => {
@@ -167,23 +167,19 @@
             }
 
 
-            // Karakter B, oppgave 1, ta i mot fra endre farge seksjonen
-            document.getElementById("saveNewColor").addEventListener("click", () => {
-                // Henter indexen fra select elementet
-                const index = document.getElementById("colorSquareIndex").value
-                // Henter fargen fra input elementet
-                const newColor = document.getElementById("newColor").value
-                // Endrer fargen i arrayen
-                colorArray[index] = newColor
-                // Logger arrayen i konsollen
+            // Karakter B, oppgave 1, ta i mot fra endre farge seksjonen og lagrer i systemet
+            document.getElementById("saveNewColor").addEventListener("click", colorInput)
+            function colorInput() {
+                // Legger til # foran hexInput, slik at brukeren slipper å skrive det
+                const hexInput = "#" + document.getElementById("newColor").value
+                // Karakter B, oppgave 2, sørger for at inputet erstatter rigtig objekt i arrayen
+                const hexIndex = document.getElementById("colorSquareIndex").value
+                // Her sender jeg inputet fra hexIndex til arrayen som da erstatter hexInput på riktig plass
+                colorArray[hexIndex] = hexInput
                 console.log(colorArray)
-                // Tømmer canvaset
-                ctx.clearRect(0, 0, canvas.width, canvas.height)
-                // Kjører renderCanvas funksjonen på nytt
-                renderCanvas()
-                // Kjører disableButton funksjonen
-                disableButton()
-            })
+                console.log(hexInput)
+                console.log(hexIndex)
+            }
 
     </script>
 </body>
