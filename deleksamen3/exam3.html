@@ -175,25 +175,35 @@
                 const hexInput = "#" + document.getElementById("newColor").value
                 // Karakter B, oppgave 2, sørger for at inputet erstatter rigtig objekt i arrayen
                 const hexIndex = document.getElementById("colorSquareIndex").value
-                // Karakter A oppagve 1 a, sjekker om hexIndex er fylt inn allerede, og gir en alert hvis det ikke er fylt inn
+                // Karakter A oppagve 1a, sjekker om hexIndex er fylt inn allerede, og gir en alert hvis det ikke er fylt inn
                 // Hvis hexIndex er mellom 0 og lengden på colorArray, og det finnes en farge i arrayen, blir fargen erstattet
-                if (hexIndex >= 0 && hexIndex < colorArray.length && colorArray[hexIndex] ) {
+               
+                 if (hexIndex >= 0 && hexIndex < colorArray.length && colorArray[hexIndex]) {
                     colorArray[hexIndex] = hexInput
                 } else {
-                    alert("Den valgte firkanten har ingen farge.")
+                    if (colorArray.length === 0) {
+                        // Karakter A oppgave 2a, gir riktig alert som står i oppgaven
+                        alert("Det er ingen firkanter som kan bytte farge enda.")
+                    } else {
+                        // Karakter A oppgave 2a, her viser meldingen hvilken firkant brukeren har valgt, og 1 fordi man starter alltid på 1, og lengden på arrayen minus 1 slik at det står plassen i canvsaset og ikke arrayen
+                        alert("Du har valgt firkant " + hexIndex + ". Denne har ikke en farge enda, og kan derfor ikke byttes. Du kan endre farge på firkant " + (1) + " til " + (colorArray.length + 1 - 1) + ".")
+                    }
                 }
+
                 // Karakter A oppgave 1b, sjekker om hex koden som skrives inn er gyldig
                 // https://stackoverflow.com/questions/8027423/how-to-check-if-a-string-is-a-valid-hex-color-representation
                 // Kilde til hvor jeg hentet koden fra for å sjekke om hex koden er gyldig
                 const hexPattern = /^#[0-9A-Fa-f]{6}$/
                 if (!hexPattern.test(hexInput)) {
-                    alert("Ugyldig fargekode. Vennligst skriv inn en gyldig hex-kode.")
+                    // Karakter A oppgave 2b, gir en alert om hexInput ikke er en gyldig fargekode
+                    alert("Du har skrevet " + hexInput + " Dette er ikke en gyldig fargekode.")
                     return
                 }
                 // Karakter A oppgave 1c, sjekker om input feltet er tomt og gir en alert om det stemmer
                 const userInput = document.getElementById("newColor").value
                 if ( userInput === "" ) {
-                    alert("Fyll inn en farge")
+                    // Karakter A oppgave 2c, gir en alert om at input feltet er tomt
+                    alert("Du har ikke skrevet noen fargekode enda")
                 }
             }
 
