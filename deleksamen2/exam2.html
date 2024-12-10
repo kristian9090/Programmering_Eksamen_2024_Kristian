@@ -149,17 +149,24 @@
         //lager en tom variabel for utskrift
         let todolist = ""
 
-        //lager .map funksjon og template literals for å hente ut data fra todos. Oppgave 2, på linje 110 lager jeg en if test for å sjekke status som bestemmer class som gir rød eller grønn farge
+        // lager .map funksjon og template literals for å hente ut data fra todos. Oppgave 2, på linje 110 lager jeg en if test for å sjekke status som bestemmer class som gir rød eller grønn farge
         todos.map((todos, index) => {
+            // Karakter A oppgave 1, endrer fra span til a tag slik at den kan trykkes
               todolist += `<li> 
                     <span class="tast-text">${todos.text}</span>
-                    <span class="task-status ${todos.status === "Done" ? "task-status-done": "task-status-todo" }">${todos.status}</span>
+                    <span id="statusButton" class="task-status ${todos.status === "Done" ? "task-status-done": "task-status-todo" }">${todos.status}</span>
                 </li>`
         })
         
         document.getElementById("todolist").innerHTML = todolist
         
-        //Karakter D, oppgave 1 lager funksjon som tar imot input og skriver det ut i todolist
+        // Karakter A oppgave 1, Knapp slik at status på oppgaver endres
+        document.getElementById("statusButton").addEventListener("click", updateStatus)
+        function updateStatus () {
+           console.log("status endret")
+        }
+
+        // Karakter D, oppgave 1 lager funksjon som tar imot input og skriver det ut i todolist
         // Karakter B, oppgave 1, når  knappen blir trykket på blir funksjonen taskClick kjørt, og listen med oppgaver blir oppdatert
         function taskClick() {
             const inputValue = document.getElementById("task").value
@@ -168,7 +175,7 @@
             if (inputValue === "") {
                 alert("Oppgavetekst feltet må fylles ut")
                 return
-            } 
+            }
             
             console.log(inputValue)
             //template literals for å skrive ut verdien i todolist som bruker legger inn i inputvalue
@@ -183,9 +190,8 @@
        
 
         //CLOCK
-
-         // https://www.w3schools.com/js/tryit.asp?filename=tryjs_date_new
-         // Kilde til hvo jeg hentet koden til klokken fra
+        // https://www.w3schools.com/js/tryit.asp?filename=tryjs_date_new
+        // Kilde til hvo jeg hentet koden til klokken fra
     
         function clockUpdate () {
             const clock = new Date()

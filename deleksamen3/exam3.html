@@ -167,18 +167,34 @@
             }
 
 
-            // Karakter B, oppgave 1, ta i mot fra endre farge seksjonen og lagrer i systemet
+           
             document.getElementById("saveNewColor").addEventListener("click", colorInput)
+            // Karakter B, oppgave 1, ta i mot fra endre farge seksjonen og lagrer i systemet
             function colorInput() {
                 // Legger til # foran hexInput, slik at brukeren slipper å skrive det
                 const hexInput = "#" + document.getElementById("newColor").value
                 // Karakter B, oppgave 2, sørger for at inputet erstatter rigtig objekt i arrayen
                 const hexIndex = document.getElementById("colorSquareIndex").value
-                // Karakter B oppgave 3, Her sender jeg inputet fra hexIndex til arrayen som da erstatter hexInput på riktig plass
-                colorArray[hexIndex] = hexInput
-                console.log(colorArray)
-                console.log(hexInput)
-                console.log(hexIndex)
+                // Karakter A oppagve 1 a, sjekker om hexIndex er fylt inn allerede, og gir en alert hvis det ikke er fylt inn
+                // Hvis hexIndex er mellom 0 og lengden på colorArray, og det finnes en farge i arrayen, blir fargen erstattet
+                if (hexIndex >= 0 && hexIndex < colorArray.length && colorArray[hexIndex] ) {
+                    colorArray[hexIndex] = hexInput
+                } else {
+                    alert("Den valgte firkanten har ingen farge.")
+                }
+                // Karakter A oppgave 1b, sjekker om hex koden som skrives inn er gyldig
+                // https://stackoverflow.com/questions/8027423/how-to-check-if-a-string-is-a-valid-hex-color-representation
+                // Kilde til hvor jeg hentet koden fra for å sjekke om hex koden er gyldig
+                const hexPattern = /^#[0-9A-Fa-f]{6}$/
+                if (!hexPattern.test(hexInput)) {
+                    alert("Ugyldig fargekode. Vennligst skriv inn en gyldig hex-kode.")
+                    return
+                }
+                // Karakter A oppgave 1c, sjekker om input feltet er tomt og gir en alert om det stemmer
+                const userInput = document.getElementById("newColor").value
+                if ( userInput === "" ) {
+                    alert("Fyll inn en farge")
+                }
             }
 
     </script>
