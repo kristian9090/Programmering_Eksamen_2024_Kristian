@@ -41,8 +41,8 @@
         <section id="todos">
             <h2>Oppgaver</h2>
             <ul id="todolist">
-                <!-- De to listeelementene skal byttes ut med utsk  rift av data fra programkoden i <script> -->
-                    <!-- Kommenterte ut li listen under for å fjerne den fra koden -->
+                <!-- De to listeelementene skal byttes ut med utskrift av data fra programkoden i <script> -->
+                <!-- Kommenterte ut li listen under for å fjerne den fra koden -->
                 <!-- <li>
                     <span class="tast-text">Les eksamensteksten</span>
                     <span class="task-status task-status-done">Done</span>
@@ -149,7 +149,7 @@
         //lager en tom variabel for utskrift
         let todolist = ""
 
-        // lager .map funksjon og template literals for å hente ut data fra todos. Oppgave 2, på linje 110 lager jeg en if test for å sjekke status som bestemmer class som gir rød eller grønn farge
+        // Minstekrav oppgave 1, lager .map funksjon og template literals for å hente ut data fra todos. Oppgave 2, på linje 110 lager jeg en if test for å sjekke status som bestemmer class som gir rød eller grønn farge
         todos.map((todos, index) => {
             // Karakter A oppgave 1, endrer fra span til a tag slik at den kan trykkes
               todolist += `<li> 
@@ -163,12 +163,7 @@
         
         // Karakter A oppgave 1, Knapp slik at status på oppgaver endres        
         function updateStatus () {
-            // Karakter A oppgave 1, endrer status på oppgavene
-            if (todos.status === "Done") {
-                todos.status = "To do"
-            } else {
-                todos.status = "Done"
-            }
+           if ( updateStatus )
            console.log("status endret")
            
         }
@@ -187,21 +182,21 @@
             console.log(inputValue)
             //template literals for å skrive ut verdien i todolist som bruker legger inn i inputvalue
             todos.text = inputValue
-            todolist += `
-                <li>
-                    <span class="tast-text">${inputValue}</span>
-                    <span class="task-status task-status-todo">To do</span>
+            todolist += `<li> 
+                    <span class="tast-text">${todos.text}</span>
+                    <a href="#" id="statusButton" class="task-status ${todos.status === "Done" ? "task-status-done": "task-status-todo" }" onclick="updateStatus(${index})">${todos.status}</a>
                 </li>`
                 document.getElementById("todolist").innerHTML = todolist
         }
 
         //CLOCK
+        // Karakter D oppgave 2, henter klokke fra nettet og skriver ut på riktig sted
+        // Karakter D, oppgave 4, kilde til hvo jeg hentet koden til klokken fra
         // https://www.w3schools.com/js/tryit.asp?filename=tryjs_date_new
-        // Kilde til hvo jeg hentet koden til klokken fra
     
         function clockUpdate () {
             const clock = new Date()
-            //definerer varialber for å hente forskjellige tider    
+            // Karakter D oppgave 3, henter sekunder, minutter og timer     
             let sec = clock.getSeconds()
             let min = clock.getMinutes()
             let hour = clock.getHours()
@@ -211,7 +206,7 @@
 
 
         clockUpdate()
-        //setter interval for at klokken teller 1 sekund, hvis ikke hadde den kun oppdatert hver gang den kjøres altså hver gang siden refreshes
+        // setInterval for at klokken teller 1 sekund, hvis ikke hadde den kun oppdatert hver gang den kjøres altså hver gang siden refreshes
         setInterval(clockUpdate, 1000)
 
     </script>
