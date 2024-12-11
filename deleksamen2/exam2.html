@@ -156,18 +156,17 @@
                     <span class="tast-text">${todos.text}</span>
                     <a href="#" id="statusButton" class="task-status ${todos.status === "Done" ? "task-status-done": "task-status-todo" }" onclick="updateStatus(${index})">${todos.status}</a>
                 </li>`
-
-                // <a href="#" id="statusButton" class="task-status ${todos.status === "Done" ? "task-status-done": "task-status-todo" }" onclick="updateStatus(${index})">${todos.status}</a>
-
         })
         
         document.getElementById("todolist").innerHTML = todolist
         
-        // Karakter A oppgave 1, Knapp slik at status på oppgaver endres        
+        // Karakter A oppgave 1, funjson til knapp slik at status på oppgaver endres        
         function updateStatus(index) {
+            // Endrer status på oppgavene når knappen trykkes på
             todos[index].status = "Done"
             todolist = ""
             todos.map((todo, idx) => {
+                // Karakter A oppgave 2, her oppdateres grensesnittet og status til class umiddelbart på oppgavene når knappen trykkes
                 todolist += `<li> 
                     <span class="tast-text">${todo.text}</span>
                     <a href="#" id="statusButton" class="task-status ${todo.status === "Done" ? "task-status-done": "task-status-todo" }" onclick="updateStatus(${idx})">${todo.status}</a>
@@ -175,7 +174,9 @@
             })
             document.getElementById("todolist").innerHTML = todolist
 
+            // Konsoll logger for å sjekke om status faktisk endres, istedenfor at utskriften endres
             console.log(todos)
+
             console.log("status endret")
            
         }
