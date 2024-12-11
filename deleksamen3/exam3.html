@@ -109,14 +109,16 @@
 
                 // Lager gjennomsiktig tekst i boksen
                 ctx.beginPath()
+                // Tallet skrived ut i samme farge som firkanten
                 ctx.fillStyle = color
-                ctx.font = "12px Arial"
-                ctx.fillText(index + 1, index * 100 + 78, 93)
+                ctx.font = "15px Arial"
+                ctx.fillText(index + 1, index * 100 + 85, 93)
                 ctx.closePath()
 
            
             })
             
+            // Karakter D oppgae 1, skriver ut fargen ved hjelp av requestAnimationFrame
             requestAnimationFrame(renderCanvas)
             
         }
