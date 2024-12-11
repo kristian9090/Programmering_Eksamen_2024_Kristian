@@ -157,14 +157,26 @@
                     <a href="#" id="statusButton" class="task-status ${todos.status === "Done" ? "task-status-done": "task-status-todo" }" onclick="updateStatus(${index})">${todos.status}</a>
                 </li>`
 
+                // <a href="#" id="statusButton" class="task-status ${todos.status === "Done" ? "task-status-done": "task-status-todo" }" onclick="updateStatus(${index})">${todos.status}</a>
+
         })
         
         document.getElementById("todolist").innerHTML = todolist
         
         // Karakter A oppgave 1, Knapp slik at status på oppgaver endres        
-        function updateStatus () {
-           if ( updateStatus )
-           console.log("status endret")
+        function updateStatus(index) {
+            todos[index].status = "Done"
+            todolist = ""
+            todos.map((todo, idx) => {
+                todolist += `<li> 
+                    <span class="tast-text">${todo.text}</span>
+                    <a href="#" id="statusButton" class="task-status ${todo.status === "Done" ? "task-status-done": "task-status-todo" }" onclick="updateStatus(${idx})">${todo.status}</a>
+                </li>`
+            })
+            document.getElementById("todolist").innerHTML = todolist
+
+            console.log(todos)
+            console.log("status endret")
            
         }
 
@@ -181,12 +193,15 @@
             
             console.log(inputValue)
             //template literals for å skrive ut verdien i todolist som bruker legger inn i inputvalue
-            todos.text = inputValue
-            todolist += `<li> 
-                    <span class="tast-text">${todos.text}</span>
-                    <a href="#" id="statusButton" class="task-status ${todos.status === "Done" ? "task-status-done": "task-status-todo" }" onclick="updateStatus(${index})">${todos.status}</a>
+            todos.push({text: inputValue, status: "To do"})
+            todolist = ""
+            todos.map((todo, index) => {
+                todolist += `<li> 
+                    <span class="tast-text">${todo.text}</span>
+                    <a href="#" id="statusButton" class="task-status ${todo.status === "Done" ? "task-status-done": "task-status-todo" }" onclick="updateStatus(${index})">${todo.status}</a>
                 </li>`
-                document.getElementById("todolist").innerHTML = todolist
+            })
+            document.getElementById("todolist").innerHTML = todolist
         }
 
         //CLOCK
