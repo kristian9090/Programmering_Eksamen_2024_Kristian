@@ -154,17 +154,23 @@
             // Karakter A oppgave 1, endrer fra span til a tag slik at den kan trykkes
               todolist += `<li> 
                     <span class="tast-text">${todos.text}</span>
-                    <span id="statusButton" class="task-status ${todos.status === "Done" ? "task-status-done": "task-status-todo" }">${todos.status}</span>
+                    <a href="#" id="statusButton" class="task-status ${todos.status === "Done" ? "task-status-done": "task-status-todo" }" onclick="updateStatus(${index})">${todos.status}</a>
                 </li>`
-        })
 
+        })
         
         document.getElementById("todolist").innerHTML = todolist
         
-        // Karakter A oppgave 1, Knapp slik at status på oppgaver endres
-        document.getElementById("statusButton").addEventListener("click", updateStatus)
+        // Karakter A oppgave 1, Knapp slik at status på oppgaver endres        
         function updateStatus () {
+            // Karakter A oppgave 1, endrer status på oppgavene
+            if (todos.status === "Done") {
+                todos.status = "To do"
+            } else {
+                todos.status = "Done"
+            }
            console.log("status endret")
+           
         }
 
         // Karakter D, oppgave 1 lager funksjon som tar imot input og skriver det ut i todolist
