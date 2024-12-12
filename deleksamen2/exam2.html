@@ -68,10 +68,12 @@
 
         // Karakter C, oppgave 1, sorterer kontakter etter etternavn
         function sortName(a, b) {
-            // localCompare sammenligner to strenger som blir tatt i mot i parameter a og b
+            // LocalCompare sammenligner to strenger som blir tatt i mot i parameter a og b
+            // Kilde til hvor jeg fant localCompare
+            // https://www.w3schools.com/jsreF/jsref_localecompare.asp
             return a.lastname.localeCompare(b.lastname)
         }
-        //kaller på sortName funksjonen for å sortere etternavn
+        // Kaller på sortName funksjonen for å sortere etternavn
         contacts.sort(sortName)
 
 
@@ -79,6 +81,7 @@
         let contactlist = ""
 
           // Minstekrav oppgave 2, legger på mailto slik at mailen kan trykkes
+          // Bruker .map funksjon som henter ut data fra contacts, og legger det inn i template literals
         contacts.map((contact, index) => {
             contactlist += `<article>
                 <p><strong>${contact.lastname}, ${contact.firstname}</strong><br />
@@ -87,6 +90,7 @@
             </article>`
         })
 
+        // Skriver ut kontakt listen til riktig id
         document.getElementById("contactlist").innerHTML = contactlist
 
         //BOOKS
@@ -101,6 +105,7 @@
 
         //Penger på konto i november
         let totalMoney = 23782
+        // Skriver ut penger på konto i november til riktig id
         document.getElementById("incomingequity").innerHTML = totalMoney
         // Lager en variabel for total verdi som senere oppdateres
         let balance = 0
@@ -160,11 +165,40 @@
         
         document.getElementById("todolist").innerHTML = todolist
         
-        // Karakter A oppgave 1, funjson til knapp slik at status på oppgaver endres        
-        function updateStatus(index) {
-            // Endrer status på oppgavene når knappen trykkes på
+
+        // Karakter D, oppgave 1 lager funksjon som tar imot input og skriver det ut i todolist
+        // Karakter B, oppgave 1, når  knappen blir trykket på blir funksjonen taskClick kjørt, og listen med oppgaver blir oppdatert
+        function taskClick() {
+            const inputValue = document.getElementById("task").value
+            
+            // Karakter C, oppgave 3, hvis inputvalue er tomt blir funksjonen avsluttet med return, i tillegg kommer en alert når feltet er tomt
+            if (inputValue === "") {
+                // Karakter C, oppgave 4, gir en alert hvis inputvalue er tom
+                alert("Oppgavetekst feltet må fylles ut")
+                return
+            }
+            
+            console.log(inputValue)
+            // Legger til inputvalue i todos
+            todos.push({text: inputValue, status: "To do"})
+            todolist = ""
+            // Template literals for å skrive ut verdien i todolist som bruker legger inn i inputvalue
+            todos.map((todo, index) => {
+                todolist += `<li> 
+                    <span class="tast-text">${todo.text}</span>
+                    <a href="#" id="statusButton" class="task-status ${todo.status === "Done" ? "task-status-done": "task-status-todo" }" onclick="updateStatus(${index})">${todo.status}</a>
+                </li>`
+            })
+            // Skriver ut verdien i todolist
+            document.getElementById("todolist").innerHTML = todolist
+        }
+
+          // Karakter A oppgave 1, funjson til knapp slik at status på oppgaver endres        
+          function updateStatus(index) {
+            // Endrer status til done på oppgavene når knappen trykkes på
             todos[index].status = "Done"
             todolist = ""
+            // Endrer navn på parameter fra todos til todo og index til idx, for å unngå konflikt med variablene definert tidligere
             todos.map((todo, idx) => {
                 // Karakter A oppgave 2, her oppdateres grensesnittet og status til class umiddelbart på oppgavene når knappen trykkes
                 todolist += `<li> 
@@ -172,37 +206,13 @@
                     <a href="#" id="statusButton" class="task-status ${todo.status === "Done" ? "task-status-done": "task-status-todo" }" onclick="updateStatus(${idx})">${todo.status}</a>
                 </li>`
             })
+
+            // Skriver ut den oppdaterte verdien i todolist med status Done
             document.getElementById("todolist").innerHTML = todolist
 
             // Konsoll logger for å sjekke om status faktisk endres, istedenfor at utskriften endres
             console.log(todos)
-
-            console.log("status endret")
            
-        }
-
-        // Karakter D, oppgave 1 lager funksjon som tar imot input og skriver det ut i todolist
-        // Karakter B, oppgave 1, når  knappen blir trykket på blir funksjonen taskClick kjørt, og listen med oppgaver blir oppdatert
-        function taskClick() {
-            const inputValue = document.getElementById("task").value
-            
-            // Karakter C, oppgave 3, hvis inputvalue er tom blir funksjonen avsluttet med return, i tillegg kommer en alert når feltet er tomt
-            if (inputValue === "") {
-                alert("Oppgavetekst feltet må fylles ut")
-                return
-            }
-            
-            console.log(inputValue)
-            //template literals for å skrive ut verdien i todolist som bruker legger inn i inputvalue
-            todos.push({text: inputValue, status: "To do"})
-            todolist = ""
-            todos.map((todo, index) => {
-                todolist += `<li> 
-                    <span class="tast-text">${todo.text}</span>
-                    <a href="#" id="statusButton" class="task-status ${todo.status === "Done" ? "task-status-done": "task-status-todo" }" onclick="updateStatus(${index})">${todo.status}</a>
-                </li>`
-            })
-            document.getElementById("todolist").innerHTML = todolist
         }
 
         //CLOCK
@@ -217,6 +227,7 @@
             let min = clock.getMinutes()
             let hour = clock.getHours()
           
+            // Skriver ut klokken med riktig format og : i mellom så det ser skikkelig ut
             document.getElementById("clock").innerHTML = hour + ":" + min + ":" + sec
         }
 
