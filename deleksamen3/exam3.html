@@ -53,12 +53,14 @@
             }   
             // Lager array for hexa farge som består av tall og bokstaver
             const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"]
+            // Variabel som starter med # foran hexa fargen
             let hex = "#"
             // En for loop som går gjennom numbers arrayen, henter tilfeldige tall og bokstaver til slutt genereres en farge kode på maks 6 tegn
             for (let maxNum = 0; maxNum < 6; maxNum++) {
+            // Her oppdateres hex variabelen til hexa koden
             hex += numbers[Math.floor(Math.random() * numbers.length)]
             }
-            // Returnerer fargen til arrayet
+            // Returnerer den oppdaterte fargen slik at den får # foran
             return hex
         }
 
@@ -66,9 +68,9 @@
         function addColorArray() {
             const newColor = generateColor()
             if (newColor) {
-            //legger til fargen i arrayen med .push
+            // Legger til fargen i arrayen med .push
             colorArray.push(newColor)
-            // Minstekrav, Oppgave 3 logger i konsollen
+            // Minstekrav, Oppgave 3 logger alle hexa kodene i konsollen
             console.log(colorArray)
             }
             // Karakter C oppgave 2, deaktiverer addColor-knappen hvis 10 farger er lagret
@@ -77,6 +79,7 @@
                 }
         }
 
+        // Når addColor-knappen trykkes kjøres funksjonen addColorArray() som legger til farge i arrayen med hexa kode og tall som stemmer
         document.getElementById("addColor").addEventListener("click", addColorArray)
 
         //requestAnimationFrame
@@ -86,7 +89,7 @@
             colorArray.forEach((color, index) => {
                 // Canvas blir fylt med farger fra colorArray
                 ctx.fillStyle = color
-                // Lager hvit boks øverst 
+                // Lager hvit boks øverst til venstre
                 ctx.beginPath()
                 ctx.fillRect(index * 100, 0, 100, 100)
                 ctx.rect(index * 100, 0, 60, 25)
@@ -107,9 +110,9 @@
                 ctx.fillRect(index * 100 + 75, 75, 25, 25)
                 ctx.closePath()
 
-                // Lager gjennomsiktig tekst i boksen
+                // Lager tekst i den andre boksen med tallene 1-10, og matcher fargene med tallene
                 ctx.beginPath()
-                // Tallet skrived ut i samme farge som firkanten
+                // Tallet skrives ut i samme farge som firkanten
                 ctx.fillStyle = color
                 ctx.font = "15px Arial"
                 ctx.fillText(index + 1, index * 100 + 85, 93)
@@ -125,7 +128,7 @@
         
         //Karakter D, oppgave 2, Lager funksjon for å tømme canvaset
         function clearArray() {
-            //clearRect gjør at canvaset tømmes
+            // ClearRect gjør at canvaset tømmes,
             ctx.clearRect(0, 0, canvas.width, canvas.height)
             // Karakter D, oppgave 2/3, tilbakestiller arrayen til tom
             colorArray = []
@@ -134,7 +137,7 @@
 
         }
 
-        //Initial running of drawing canvas
+        // Kjører renderCanvas funksjonen
         renderCanvas()
 
 
@@ -152,13 +155,13 @@
                     }
             }
             
-            // Når knappen trykkes kjøres macColors()
+            // Når knappen trykkes kjøres maxColors()
             document.getElementById("generateAll").addEventListener("click", maxColors)
 
 
             // Karakter C, oppgave 2, 
             function disableButton() {
-                    // Når tilbakestill knappen trykkes blir knappen for å lage 10 nye farger igjen aktivert
+                    // Når tilbakestill knappen trykkes blir knappen for å lage 10 nye farger igjen aktivert, med en arrow funksjon
                     document.getElementById("emptyArray").addEventListener("click", () => {
                     document.getElementById("addColor").disabled = false
                 })  
@@ -179,12 +182,11 @@
                 const hexIndex = document.getElementById("colorSquareIndex").value
                 // Karakter A oppagve 1a, sjekker om hexIndex er fylt inn allerede, og gir en alert hvis det ikke er fylt inn
                 // Hvis hexIndex er mellom 0 og lengden på colorArray, og det finnes en farge i arrayen, blir fargen erstattet
-               
                  if (hexIndex >= 0 && hexIndex < colorArray.length && colorArray[hexIndex]) {
                     colorArray[hexIndex] = hexInput
                 } else {
-                    if (colorArray.length === 0) {
                         // Karakter A oppgave 2a, gir riktig alert som står i oppgaven
+                    if (colorArray.length === 0) {
                         alert("Det er ingen firkanter som kan bytte farge enda.")
                     } else {
                         // Karakter A oppgave 2a, her viser meldingen hvilken firkant brukeren har valgt, og 1 fordi man starter alltid på 1, og lengden på arrayen minus 1 slik at det står plassen i canvsaset og ikke arrayen
@@ -196,15 +198,16 @@
                 // https://stackoverflow.com/questions/8027423/how-to-check-if-a-string-is-a-valid-hex-color-representation
                 // Kilde til hvor jeg hentet koden fra for å sjekke om hex koden er gyldig
                 const hexPattern = /^#[0-9A-Fa-f]{6}$/
-                if (!hexPattern.test(hexInput)) {
+                // Her ser den med .test hexPattern og returnerer true om hexInput er en gyldig fargekode
+                if (hexPattern.test(hexInput) === false) {
                     // Karakter A oppgave 2b, gir en alert om hexInput ikke er en gyldig fargekode
                     alert("Du har skrevet " + hexInput + " Dette er ikke en gyldig fargekode.")
                     return
                 }
                 // Karakter A oppgave 1c, sjekker om input feltet er tomt og gir en alert om det stemmer
                 const userInput = document.getElementById("newColor").value
+                // Karakter A oppgave 2c, gir en alert om at input feltet er tomt
                 if ( userInput === "" ) {
-                    // Karakter A oppgave 2c, gir en alert om at input feltet er tomt
                     alert("Du har ikke skrevet noen fargekode enda")
                 }
             }
